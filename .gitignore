@@ -1,0 +1,25 @@
+# Ignore Eclipse project files
+.settings/
+.classpath
+.project
+
+# Ignore build and output directories
+bin/
+target/
+
+# Ignore dependency files
+*.iml
+*.jar
+*.war
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore Maven & Gradle files (if used)
+.mvn/
+.gradle/

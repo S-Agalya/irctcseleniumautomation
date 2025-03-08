@@ -58,6 +58,43 @@ public class Irctcbookingscript{
 		 submit.click()	; 
 		 System.out.print("details filled and logged in successfully!!");
 	 }
+	 
+//	 public void FillingDetailsToBookingTicket(String from,String to) throws InterruptedException {
+//		 WebElement from1=driver.findElement(By.xpath("//*[@id=\"origin\"]/span/input"));
+//		 WebElement to1=driver.findElement(By.xpath("//*[@id=\"destination\"]/span/input"));
+//		 //WebElement date1=driver.findElement(By.xpath("//*[@id=\"jDate\"]/span/input"));
+//		
+//		 WebElement search=driver.findElement(By.xpath("//button[@label='Find Trains']"));
+//		 from1.sendKeys(from);
+//		 to1.sendKeys(to);
+//		 search.clear();
+//		 Thread.sleep(1000);
+////		 date1.sendKeys(date);
+//		 Thread.sleep(2000);
+//		 search.click();
+//		 System.out.println("details filled now you can book the ticket");
+//	 }
+	 
+	 public void FillingDetailsToBookingTicket(String from, String to) {
+		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+		    WebElement from1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"origin\"]/span/input")));
+		    WebElement to1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"destination\"]/span/input")));
+		    WebElement search = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@label='Find Trains']")));
+
+		    from1.sendKeys(from);
+		    to1.sendKeys(to);
+
+		    // Wait for a short time to let input settle
+		    wait.until(ExpectedConditions.textToBePresentInElementValue(from1, from));
+		    wait.until(ExpectedConditions.textToBePresentInElementValue(to1, to));
+
+		    // Clicking the search button
+		    search.click();
+		    
+		    System.out.println("Details filled. Now you can book the ticket.");
+		}
+	 
 //	 
 ////	 public void Irctclogin(String username, String password) {
 ////	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(600));
@@ -76,6 +113,7 @@ public class Irctcbookingscript{
 ////
 ////	        System.out.println("Login details filled and submitted.");
 ////	    }
+///
 	public static void main(String args[]) throws InterruptedException {
 		Irctcbookingscript script=new Irctcbookingscript();
 		script.setup();
@@ -83,6 +121,8 @@ public class Irctcbookingscript{
 		script.Clickfirstlink();
 		Thread.sleep(1000);
 		script.Irctclogin("agalyas", "Agal@2003");
+		Thread.sleep(5000);
+		script.FillingDetailsToBookingTicket("CHENNAI EGMORE - MS (CHENNAI)", "SRIVAIKUNTAM - SVV");
 			
 		}
 }

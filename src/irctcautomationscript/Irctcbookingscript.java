@@ -95,6 +95,21 @@ public class Irctcbookingscript{
 		    System.out.println("Details filled. Now you can book the ticket.");
 		}
 	 
+	 public void bookingTicket() throws InterruptedException {
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		 WebElement select_class=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(), 'Refresh')]")));
+	 WebElement select_date=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@_ngcontent-yki-c106, '')]//strong\r\n")));
+		 //WebElement select_date = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'date-class-name')]//strong")));
+
+		 
+		 select_class.click();
+		
+		 System.out.println("sleeper cell clicked!!");
+		 Thread.sleep(3000);
+		 select_date.click();
+		 System.out.println("Date selected!!");
+		 
+	 }
 //	 
 ////	 public void Irctclogin(String username, String password) {
 ////	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(600));
@@ -123,6 +138,8 @@ public class Irctcbookingscript{
 		script.Irctclogin("agalyas", "Agal@2003");
 		Thread.sleep(5000);
 		script.FillingDetailsToBookingTicket("CHENNAI EGMORE - MS (CHENNAI)", "SRIVAIKUNTAM - SVV");
+		Thread.sleep(9000);
+script.bookingTicket();
 			
 		}
 }
